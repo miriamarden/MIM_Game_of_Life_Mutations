@@ -4,9 +4,9 @@ new_gen = zeros(100);
 for m = 2:99 %for rows 1 through 100
 	for n = 2:99 %for columns 1 through 100
         neighbors = 0;
-        if current_gen(m-1,n-1) == 1
-            neighbors = neighbors+1;
-        end
+        	if current_gen(m-1,n-1) == 1
+            		neighbors = neighbors+1;
+        	end
 	
 		if current_gen(m-1,n) == 1
 			neighbors = neighbors+1;
@@ -30,12 +30,13 @@ for m = 2:99 %for rows 1 through 100
 	
 		if current_gen(m+1,n) == 1
 			neighbors = neighbors+1;
-        end
+		end
+		
+		if current_gen(m+1,n+1) == 1
+           		neighbors = neighbors+1;
+        	end
         
-        if current_gen(m+1,n+1) == 1
-            neighbors = neighbors+1;
-        end
-        
+       
         if current_gen(m,n) == 1
             if (neighbors < 2 || neighbors >3)
                 new_gen(m,n) = 0;
