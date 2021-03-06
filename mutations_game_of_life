@@ -1,18 +1,28 @@
 function [] = mutations_game_of_life()
-current_gen = zeros(100);
 
-current_gen(randi([2,99],1,1), randi([2,99],1,1)) = .5; %location of predator 1
-current_gen(randi([2,99],1,1), randi([2,99],1,1)) = .5; %location of predator 2
-current_gen(randi([2,99],1,1), randi([2,99],1,1)) = .5; %location of predator 3
-current_gen(randi([2,99],1,1), randi([2,99],1,1)) = .5; %location of predator 4
-
-%current_gen = randi([0,1],100,100,3);
-%current_gen = cat(3,current_gen);
+current_gen = randi([0,1],100,100,3);
+current_gen = cat(3,current_gen);
 
 
-while true
+x = randi([2,99])
+y = randi([2,99])
+
+red_channel = current_gen(:,:,1)
+green_channel = current_gen(:,:,2)
+blue_channel = current_gen(:,:,3)
+ 
+ 
+b=current_gen(x,y,1);
+c=current_gen(x,y,2);
+d=current_gen(x,y,3);
+imagesc(current_gen); %creates an initial generation matrix of random 0’s and 1’s
+
+a=1;
+
+while a=1
     [new_gen] = check_neighbors(current_gen);
     current_gen = new_gen;
+    a=a+1;
 end
 
 
