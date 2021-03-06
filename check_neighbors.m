@@ -58,7 +58,7 @@ for m = 2:99 %for rows 1 through 100
 end
 
 show_stuff(new_gen);
-colormap gray
+colormap gray %Game of Life will display in black & white, cells will have no color.
 axis off
 end
 
