@@ -2,7 +2,7 @@ function [new_gen] = mutations_check_neighbors(current_gen)
 
 new_gen = zeros(100,100); 
 for_colors = ones(100,100);
-domninat = 1; %input whether the mutation is dominant(1) or recessive(0)
+dominant = 1; %input whether the mutation is dominant(1) or recessive(0)
 
 for m = 2:99 %for rows 1 through 100
 	for n = 2:99 %for columns 1 through 100
@@ -52,11 +52,6 @@ for m = 2:99 %for rows 1 through 100
         	elseif current_gen(m,n) == 0
             		if neighbors == 3
                 		new_gen(m,n) = 1; 
-                            if dominant=1 %when the gene is dominant
-                              
-                            else %when the gene is recessive
-                                if current_gen(m-1,n-1)==
-                            end
                        
                     else
                 		new_gen(m,n) = 0;
@@ -66,7 +61,6 @@ for m = 2:99 %for rows 1 through 100
     end
 end
 
-show_stuff(new_gen);
-colormap gray
+mutations_show_stuff(new_gen);
 axis off
 end
