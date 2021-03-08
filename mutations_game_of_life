@@ -1,18 +1,19 @@
 function [] = mutations_game_of_life()
 
 
-current_gen = randi([0,1],100,100,3);
+thingy = randi([0,1],100,100,3);
 
-red_channel = current_gen(:,:,1);
-green_channel = current_gen(:,:,2);
-blue_channel = current_gen(:,:,3);
+red_channel = thingy(:,:,1);
+green_channel = thingy(:,:,2);
+blue_channel = thingy(:,:,3);
 
-mutation_location = current_gen(1,1)
+mutation_location = thingy(1,1)
 
 red_channel(mutation_location) = 1;
 green_channel(mutation_location) = 0;
 blue_channel(mutation_location) = 0;
 
+current_gen = cat(3,red_channel, green_channel, blue_channel);
 
 imagesc(current_gen);
 
