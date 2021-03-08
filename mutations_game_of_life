@@ -1,22 +1,27 @@
 function [] = mutations_game_of_life()
 
-% current_gen(randi([2,99],1,1), randi([2,99],1,1)) = .5; %location of predator 1
-% current_gen(randi([2,99],1,1), randi([2,99],1,1)) = .5; %location of predator 2
-% current_gen(randi([2,99],1,1), randi([2,99],1,1)) = .5; %location of predator 3
-% current_gen(randi([2,99],1,1), randi([2,99],1,1)) = .5; %location of predator 4
 
-%should give you a rainbow picture???????
 current_gen = randi([0,1],100,100,3);
-current_gen = cat(3,current_gen); %this isn't changing what the image looks like
-imagesc(current_gen);
 
 red_channel = current_gen(:,:,1);
-red_channel = 1;
+green_channel = current_gen(:,:,2);
+blue_channel = current_gen(:,:,3);
+
+mutation_location = current_gen(1,1)
+
+red_channel(mutation_location) = 1;
+green_channel(mutation_location) = 0;
+blue_channel(mutation_location) = 0;
 
 
-while true
-    [new_gen] = check_neighbors(current_gen);
+imagesc(current_gen);
+
+
+a=1;
+while a==1
+    [new_gen] = mutations_check_neighbors(current_gen);
     current_gen = new_gen;
+    a=a+1;
 end
 
 
