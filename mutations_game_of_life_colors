@@ -1,3 +1,5 @@
+%This section was written by Miriam Arden
+
 function [] = mutations_game_of_life_colors()
 
 %The user can set the number of mutations that the array starts out with.
