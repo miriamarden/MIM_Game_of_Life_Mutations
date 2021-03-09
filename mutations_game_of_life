@@ -1,5 +1,5 @@
 function [] = mutations_game_of_life()
-num_mutations = 25;
+num_initial_mutations = 1000;
 
 initial = randi([0,1],100,100);
 current_gen = cat(3, initial, initial, initial);
@@ -8,34 +8,24 @@ red_channel = current_gen(:,:,1);
 green_channel = current_gen(:,:,2);
 blue_channel = current_gen(:,:,3);
 
-for loc = 1:num_mutations
+for loc = 1:num_initial_mutations
     mutation_location = [randi(100),randi(100)];
    
-% red_channel(mutation_location(1),mutation_location(2)) = 1;
-% green_channel(mutation_location(1),mutation_location(2)) = 0;
-% blue_channel(mutation_location(1),mutation_location(2)) = 0;
-
-% red_channel = red_channel(1:mutation_location(1),mutation_location(1):end,1:mutation_location(2), mutation_location(2):end);
-% green_channel = green_channel(1:mutation_location(1),mutation_location(1):end,1:mutation_location(2), mutation_location(2):end);
-% blue_channel = blue_channel(1:mutation_location(1),mutation_location(1):end,1:mutation_location(2), mutation_location(2):end);
-
-%update channels so that each mutation starts in a distinct location
+red_channel(mutation_location(1),mutation_location(2)) = 1;
+green_channel(mutation_location(1),mutation_location(2)) = 0;
+blue_channel(mutation_location(1),mutation_location(2)) = 0;
 
 
 end
 %arbitrary color for mutation
 
 current_gen = cat(3,red_channel, green_channel, blue_channel);
-
-imagesc(current_gen);
-
+imagesc(current_gen) %start by displaying current_gen
 
 
 while true
+    figure
     [new_gen] = mutations_check_neighbors(current_gen);
     current_gen = new_gen;
-end
-
-
-
+    %pause(1)
 end
