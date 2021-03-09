@@ -1,5 +1,9 @@
 function [] = mutations_game_of_life_colors()
+
+%The user can set the number of mutations that the array starts out with.
 num_initial_mutations = 100;
+
+%Copy over other things about colors
 
 %Set the color for the live cells
 a=1;
@@ -16,20 +20,19 @@ g=1;
 h=0;
 i=0;
 
+%initialize the current generation matrix as all dead cells
 initial = ones(100,100);
-
-%current_gen = zeros(100,100,3); %start off with all dead cells
 current_gen = cat(3,d*initial, e*initial, f*initial);
 
+%Initialize the color channels given the initial array with all dead cells
 red_channel = current_gen(:,:,1);
 green_channel = current_gen(:,:,2);
 blue_channel = current_gen(:,:,3);
 
-
-
+%The number of cells that are alive is a random number that is less than 10,000 (because the array has 10,000 total cells) 
 num_alive = randi(10000);
 
-%location of the alive cells
+%This section randomly determines the location of the live cells in the initial generation.
 for alive = 1:num_alive
     mutation_location = [randi(100),randi(100)];
     red_channel(mutation_location(1),mutation_location(2)) = a;
@@ -38,31 +41,25 @@ for alive = 1:num_alive
 end
 
 
-
-%location of the mutations
+%This section randomly determines the location of the mutations in the initial generation.
 for mut = 1:num_initial_mutations
     mutation_location = [randi(100),randi(100)];     
     
-red_channel(mutation_location(1),mutation_location(2)) = g;
-green_channel(mutation_location(1),mutation_location(2)) = h;
-blue_channel(mutation_location(1),mutation_location(2)) = i;
+    red_channel(mutation_location(1),mutation_location(2)) = g;
+    green_channel(mutation_location(1),mutation_location(2)) = h;
+    blue_channel(mutation_location(1),mutation_location(2)) = i;
 end
 
-
-
-
+%This establishes current generation array, which now contains dead cells, live cells, and mutated cells.
 current_gen = cat(3,red_channel, green_channel, blue_channel);
 
-
-
+%This loop runs forever. The function "mutations_check_neighbors_colors" takes the current generation of cells and applies the rules to result in the new generation of cells.
+%Then, what was the new generation becomes the current generation for the next iteration, and the loop repeats again.
 while true
     [new_gen] = mutations_check_neighbors_colors(current_gen);
     current_gen = new_gen;
-    %pause(1)
 end
 
 
-
-end %end function
 
 end %end function
