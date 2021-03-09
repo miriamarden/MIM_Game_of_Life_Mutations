@@ -2,29 +2,30 @@ function [new_gen] = mutations_check_neighbors_colors(current_gen)
 
 %Set the color for the live cells
 a=1;
-b=0;
+b=1;
 c=1;
 
 %Set the color for the dead cells 
-d=1;
-e=1;
-f=1;
+d=0;
+e=0;
+f=0;
 
 %Set the color for the mutated cells 
 g=1;
-h=1;
+h=0;
 i=0;
 
 initial = ones(100,100);
 new_gen = cat(3,d*initial, e*initial, f*initial);
 dominant = 1; %input whether the mutation is dominant(1) or recessive(0)
 
-
+prevalence = .5;
 
 for m = 2:99 %for rows 1 through 100
     for n = 2:99 %for columns 1 through 100
         neighbors = 0; %initialize the number of neighbors
         mutations = 0; %initialize the number of mutations
+        random = rand(1);
         
         %Update each of the color channels
         red_channel = current_gen(:,:,1);
@@ -121,22 +122,23 @@ for m = 2:99 %for rows 1 through 100
                 
                 %Determine whether the newly born cell is mutated or normal
                 if dominant == 1 %when the mutated gene is dominant, only one of the new cell's neighbors needs to be mutated in order for the new cell to be mutated
-                    if mutations >= 1
+                    if mutations >= 1 || random<=prevalence
                         new_gen(m,n,1) = g;
                         new_gen(m,n,2) = h;
                         new_gen(m,n,3) = i;
-                        
+                    
                     else
                         new_gen(m,n,1) = a;
                         new_gen(m,n,2) = b;
                         new_gen(m,n,3) = c;
-                        
                     end
+                    
+       
                 else %when the mutated gene is recessive, at least 3 of its neighbors must have the mutation in order for the new cell to be mutated%
-                    if mutations >=3
+                    if mutations >=3 || random<=prevalence
                         new_gen(m,n,1) = g;
                         new_gen(m,n,2) = h;
-                        new_gen(m,n,3) = i;
+                        new_gen(m,n,3) = i;      
                         
                     else
                         new_gen(m,n,1) = a;

@@ -1,3 +1,5 @@
+%This code was written by Miriam Arden.
+
 function [new_gen] = mutations_check_neighbors(current_gen)
 
 new_gen = zeros(100,100,3);
