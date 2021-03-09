@@ -1,4 +1,4 @@
-# Original_GameofLife
+#Game of Life: Mutations
 
 Group Members:
 1. Miriam Arden
