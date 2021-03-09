@@ -1,4 +1,4 @@
-# MIM_Game_of_Life
+# Original_GameofLife
 
 Group Members:
 1. Miriam Arden
