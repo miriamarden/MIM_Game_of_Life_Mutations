@@ -141,6 +141,6 @@ for m = 2:99 %for rows 1 through 100
     end %end for loop with n's
 end %end for loop with m's
 
-mutations_show_stuff(new_gen);
+mutations_show_stuff(current_gen);
 axis off
 end %end function
