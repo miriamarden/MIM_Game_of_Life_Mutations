@@ -1,3 +1,5 @@
+%This function displays the matrix as a grid-like image in Figure 1.
+
 function [] = mutations_show_stuff_colors(current_gen)
 imagesc(current_gen);
 axis off
