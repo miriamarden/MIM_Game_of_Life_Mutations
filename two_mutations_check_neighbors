@@ -1,0 +1,230 @@
+function [new_gen] = two_mutations_check_neighbors(current_gen)
+
+%Set the color for the live cells
+a=1;
+b=1;
+c=1;
+
+%Set the color for the dead cells 
+d=0;
+e=0;
+f=0;
+
+%Set the color for the cells with mutation 1
+g=1;
+h=0;
+i=0;
+
+%Set the color for the cells with mutation 2
+j=0;
+k=0;
+l=1;
+
+%Set the color for cells with both mutations
+p=1;
+q=1;
+r=0;
+
+initial = ones(100,100);
+new_gen = cat(3,d*initial, e*initial, f*initial);
+dominant = 1; %input whether the mutation is dominant(1) or recessive(0)
+prevalence_mutation1 = .9;
+prevalence_mutation2 = .7;
+
+for m = 2:99 %for rows 1 through 100
+    for n = 2:99 %for columns 1 through 100
+        neighbors = 0; %initialize the number of neighbors
+        mutation1 = 0; %initialize the number of mutation1
+        mutation2 = 0; %initialize the number of mutation2
+        random = rand(1);
+        
+        %Update each of the color channels
+        red_channel = current_gen(:,:,1);
+        green_channel = current_gen(:,:,2);
+        blue_channel = current_gen(:,:,3);
+        
+        
+        %count number of neighbors%
+        if red_channel(m-1,n-1)==a && green_channel(m-1,n-1)==b && blue_channel(m-1,n-1)==c
+            neighbors = neighbors+1;
+        end
+        
+        if red_channel(m-1,n)==a && green_channel(m-1,n)==b && blue_channel(m-1,n)==c
+            neighbors = neighbors+1;
+        end
+        
+        if red_channel(m-1,n+1)==a && green_channel(m-1,n+1)==b && blue_channel(m-1,n+1)==c
+            neighbors = neighbors+1;
+        end
+        
+        if red_channel(m,n-1)==a && green_channel(m,n-1)==b && blue_channel(m,n-1)==c
+            neighbors = neighbors+1;
+        end
+        
+        if red_channel(m,n+1)==a && green_channel(m,n+1)==b && blue_channel(m,n+1)==c
+            neighbors = neighbors+1;
+        end
+        
+        if red_channel(m+1,n-1)==a && green_channel(m+1,n-1)==b && blue_channel(m+1,n-1)==c
+            neighbors = neighbors+1;
+        end
+        
+        if red_channel(m+1,n)==a && green_channel(m+1,n)==b && blue_channel(m+1,n)==c
+            neighbors = neighbors+1;
+        end
+        
+        if red_channel(m+1,n+1)==a && green_channel(m+1,n+1)==b && blue_channel(m+1,n+1)==c
+            neighbors = neighbors+1;
+        end
+        
+        
+        %This section determines if cells should live or die.
+        if red_channel(m,n)==a && green_channel(m,n)==b && blue_channel(m,n)==c
+            %if cell (m,n) is alive, normal, and has less than 2 or more than 3 neighbors, then it dies.
+            if (neighbors < 2 || neighbors >3)
+                new_gen(m,n,1) = d;
+                new_gen(m,n,2) = e;
+                new_gen(m,n,3) = f;
+                
+                
+                
+                %if cell (m,n) is alive and has 2 or 3 neighbors, then it remains alive.
+            else
+                new_gen(m,n,1) = a;
+                new_gen(m,n,2) = b;
+                new_gen(m,n,3) = c;
+                
+            end
+        else
+            %if cell (m,n) is dead and has exactly 3 neighbors, then it becomes alive.
+            if neighbors == 3
+                %count number of neighbors with mutation1%
+                if red_channel(m-1,n-1)==g && green_channel(m-1,n-1)==h && blue_channel(m-1,n-1)==i
+                    mutation1 = mutation1+1;
+                end
+                
+                if red_channel(m-1,n)==g && green_channel(m-1,n)==h && blue_channel(m-1,n)==i
+                    mutation1 = mutation1+1;
+                end
+                
+                if red_channel(m-1,n+1)==g && green_channel(m-1,n+1)==h && blue_channel(m-1,n+1)==i
+                    mutation1 = mutation1+1;
+                end
+                
+                if red_channel(m,n-1)==g && green_channel(m,n-1)==h && blue_channel(m,n-1)==i
+                    mutation1 = mutation1+1;
+                end
+                
+                if red_channel(m,n+1)==g && green_channel(m,n+1)==h && blue_channel(m,n+1)==i
+                    mutation1 = mutation1+1;
+                end
+                
+                if red_channel(m+1,n-1)==g && green_channel(m+1,n-1)==h && blue_channel(m+1,n-1)==i
+                    mutation1 = mutation1+1;
+                end
+                
+                if red_channel(m+1,n)==g && green_channel(m+1,n)==h && blue_channel(m+1,n)==i
+                    mutation1 = mutation1+1;
+                end
+                
+                if red_channel(m+1,n+1)==g && green_channel(m+1,n+1)==h && blue_channel(m+1,n+1)==1
+                    mutation1 = mutation1+1;
+                end
+                
+                %count number of neighbors with mutation2%
+                if red_channel(m-1,n-1)==j && green_channel(m-1,n-1)==k && blue_channel(m-1,n-1)==l
+                    mutation2 = mutation2+1;
+                end
+                
+                if red_channel(m-1,n)==j && green_channel(m-1,n)==k && blue_channel(m-1,n)==l
+                    mutation2 = mutation2+1;
+                end
+                
+                if red_channel(m-1,n+1)==j && green_channel(m-1,n+1)==k && blue_channel(m-1,n+1)==l
+                    mutation2 = mutation2+1;
+                end
+                
+                if red_channel(m,n-1)==j && green_channel(m,n-1)==k && blue_channel(m,n-1)==l
+                    mutation2 = mutation2+1;
+                end
+                
+                if red_channel(m,n+1)==j && green_channel(m,n+1)==k && blue_channel(m,n+1)==l
+                    mutation2 = mutation2+1;
+                end
+                
+                if red_channel(m+1,n-1)==j && green_channel(m+1,n-1)==k && blue_channel(m+1,n-1)==l
+                    mutation2 = mutation2+1;
+                end
+                
+                if red_channel(m+1,n)==j && green_channel(m+1,n)==k && blue_channel(m+1,n)==l
+                    mutation2 = mutation2+1;
+                end
+                
+                if red_channel(m+1,n+1)==j && green_channel(m+1,n+1)==k && blue_channel(m+1,n+1)==l
+                    mutation2 = mutation2+1;
+                end
+                
+                %Determine whether the newly born cell has mutation1,
+                %mutation2, or neither
+                if dominant == 1 %when the mutated gene is dominant, only one of the new cell's neighbors needs to be mutated in order for the new cell to be mutated
+                    if mutation1 >= 1 || random<=prevalence_mutation1
+
+                        if mutation2 >=1 || random<=prevalence_mutation2
+                            new_gen(m,n,1) = p;
+                            new_gen(m,n,2) = q;
+                            new_gen(m,n,3) = r;
+                        else
+                            new_gen(m,n,1) = g;
+                            new_gen(m,n,2) = h;
+                            new_gen(m,n,3) = i;
+                        end
+                    elseif mutation2 >=1 || random<=prevalence_mutation2
+                        new_gen(m,n,1) = j;
+                        new_gen(m,n,2) = k;
+                        new_gen(m,n,3) = l;
+                    else
+                        new_gen(m,n,1) = a;
+                        new_gen(m,n,2) = b;
+                        new_gen(m,n,3) = c;
+                    end
+                    
+       
+                else %when the mutated gene is recessive, at least 3 of its neighbors must have the mutation in order for the new cell to be mutated%
+                    if mutation1 >= 3 || random<=prevalence_mutation1
+                        
+                        if mutation2 >=3 || random<=prevalence_mutation2
+                            new_gen(m,n,1) = p;
+                            new_gen(m,n,2) = q;
+                            new_gen(m,n,3) = r;
+                        else
+                            new_gen(m,n,1) = g;
+                            new_gen(m,n,2) = h;
+                            new_gen(m,n,3) = i;
+                        end
+                    elseif mutation2 >=3 || random<=prevalence_mutation2
+                        new_gen(m,n,1) = j;
+                        new_gen(m,n,2) = k;
+                        new_gen(m,n,3) = l;
+                    else
+                        new_gen(m,n,1) = a;
+                        new_gen(m,n,2) = b;
+                        new_gen(m,n,3) = c;
+                    end
+                end
+                
+                
+            else
+                %if cell (m,n) is dead and does not have exactly 3 neighbors, then it remains dead.
+                new_gen(m,n,1) = d;
+                new_gen(m,n,2) = e;
+                new_gen(m,n,3) = f;
+               
+            end
+            
+        end
+    end %end for loop with n's
+end %end for loop with m's
+
+mutations_show_stuff_colors(current_gen);
+axis off
+end %end function
