@@ -1,19 +1,19 @@
 function [] = mutations_game_of_life_colors()
-num_initial_mutations = 5000;
+num_initial_mutations = 100;
 
 %Set the color for the live cells
 a=1;
-b=0;
+b=1;
 c=1;
 
 %Set the color for the dead cells 
-d=1;
-e=1;
-f=1;
+d=0;
+e=0;
+f=0;
 
 %Set the color for the mutated cells 
 g=1;
-h=1;
+h=0;
 i=0;
 
 initial = ones(100,100);
@@ -62,5 +62,7 @@ while true
 end
 
 
+
+end %end function
 
 end %end function
