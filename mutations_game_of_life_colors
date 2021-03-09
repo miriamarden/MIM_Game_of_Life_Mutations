@@ -1,0 +1,66 @@
+function [] = mutations_game_of_life_colors()
+num_initial_mutations = 5000;
+
+%Set the color for the live cells
+a=1;
+b=0;
+c=1;
+
+%Set the color for the dead cells 
+d=1;
+e=1;
+f=1;
+
+%Set the color for the mutated cells 
+g=1;
+h=1;
+i=0;
+
+initial = ones(100,100);
+
+%current_gen = zeros(100,100,3); %start off with all dead cells
+current_gen = cat(3,d*initial, e*initial, f*initial);
+
+red_channel = current_gen(:,:,1);
+green_channel = current_gen(:,:,2);
+blue_channel = current_gen(:,:,3);
+
+
+
+num_alive = randi(10000);
+
+%location of the alive cells
+for alive = 1:num_alive
+    mutation_location = [randi(100),randi(100)];
+    red_channel(mutation_location(1),mutation_location(2)) = a;
+    green_channel(mutation_location(1),mutation_location(2)) = b;
+    blue_channel(mutation_location(1),mutation_location(2)) = c;
+end
+
+
+
+%location of the mutations
+for mut = 1:num_initial_mutations
+    mutation_location = [randi(100),randi(100)];     
+    
+red_channel(mutation_location(1),mutation_location(2)) = g;
+green_channel(mutation_location(1),mutation_location(2)) = h;
+blue_channel(mutation_location(1),mutation_location(2)) = i;
+end
+
+
+
+
+current_gen = cat(3,red_channel, green_channel, blue_channel);
+
+
+
+while true
+    [new_gen] = mutations_check_neighbors_colors(current_gen);
+    current_gen = new_gen;
+    %pause(1)
+end
+
+
+
+end %end function
