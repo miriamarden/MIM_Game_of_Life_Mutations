@@ -1,5 +1,6 @@
-function [] = mutations_show_stuff(new_gen)
-imagesc(new_gen);
+function [] = mutations_show_stuff(current_gen)
+imagesc(current_gen);
 axis off
 drawnow
 end
+
