@@ -124,6 +124,11 @@ for m = 2:99 %for the rows of the array
                         new_gen(m,n,3) = c;
                     end
                 end 
+            %If cell (m,n) is dead and does not have exactly 3 neighbors, then it remains dead.
+            else
+                new_gen(m,n,1) = d;
+                new_gen(m,n,2) = e;
+                new_gen(m,n,3) = f;
             end 
         end
     end %end for loop with n's
@@ -131,4 +136,4 @@ end %end for loop with m's
 
 mutations_show_stuff_colors(current_gen);
 axis off
-end %end function              
+end %end function      
