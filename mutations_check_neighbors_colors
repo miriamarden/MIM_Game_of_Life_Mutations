@@ -86,7 +86,7 @@ for m = 2:99 %for the rows of the array
                 
             end
             
-        %If cell (m,n) is alive, mutated, and has less than 2 or more than 3 neighbors, then it does. If it has exactly 2 or 3 neighbors, then it lives (and remains mutated).
+        %If cell (m,n) is alive, mutated, and has less than 2 or more than 3 neighbors, then it dies. If it has exactly 2 or 3 neighbors, then it lives (and remains mutated).
         elseif cell_status == 2
             if (neighbors < 2 || neighbors > 3)
                 new_gen(m,n,1) = d;
