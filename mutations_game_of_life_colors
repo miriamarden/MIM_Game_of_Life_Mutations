@@ -1,31 +1,43 @@
 %This section was written by Miriam Arden
 
 function [] = mutations_game_of_life_colors()
+global a b c d e f g h i dominant prevalence
 
-%The user can set a specific number of normal live cells, or the number of live normal cells can be randomly generated.
+%The user is able to set the following things:
+
+%The user can set a specific number of normal live cells, or the number of normal live cells can be randomly generated.
 num_alive = randi(10000);
 
-%The user can set the number of mutations that the array starts out with.
+%The user can set the number of mutated live cells that the array starts out with, or the number of mutated live cells can be randomly generated.
 num_initial_mutations = 100;
 
-%The user can set the colors of the live cells, dead cells, and mutated cells. For example, setting a=1, b=, and c= makes the live cells yellow. The following color combinations can be used for reference:
+%The user can set the colors of the live cells, dead cells, and mutated cells. For example, setting a=1, b=1, and c=0 makes the live cells yellow. Setting d=1, e=0, f=1 makes the dead cells pink.The following color combinations can be used for reference:
 % Black: (0,0,0)      White: (1,1,1)      Red: (1,0,0)    Green: (0,1,0)      Blue: (0,0,1)
 % Yellow: (1,1,0)     Teal: (0,1,1)       Pink: (1,0,1)
 
 %Set the color for the live cells
-a=1;
-b=1;
-c=1;
+a=1; %red channel for live cells
+b=1; %green channel for live cells
+c=1; %blue channel for live cells
 
 %Set the color for the dead cells 
-d=0;
-e=0;
-f=0;
+d=0; %red channel for dead cells
+e=0; %green channel for dead cells
+f=0; %blue channel for dead cells
 
 %Set the color for the mutated cells 
-g=1;
-h=0;
-i=0;
+g=1; %red channel for mutated cells
+h=0; %green channel for mutated cells
+i=0; %blue channel for mutated cells
+
+%The user can also decide whether the mutation is dominant (dominant=1) or recessive (dominant=0)
+dominant = 1;
+
+%The user can set the prevalence of the mutation. This is the likelihood that a new cell that would otherwise be unmutated becomes mutated.
+%For example, a prevalence of .1 means approximately 10% of cells that do not meet the threshold for obtaining the mutation through its neighbors will still become mutated.
+prevalence = 0.1;
+
+%%%%%%%%%%%%%%%%
 
 %initialize the current generation matrix as all dead cells
 initial = ones(100,100);
@@ -46,26 +58,22 @@ for alive = 1:num_alive
 end
 
 
-%This section randomly determines the location of the mutations in the initial generation.
+%This section randomly determines the location of the live mutated cells in the initial generation.
 for mut = 1:num_initial_mutations
     mutation_location = [randi(100),randi(100)];     
-    
     red_channel(mutation_location(1),mutation_location(2)) = g;
     green_channel(mutation_location(1),mutation_location(2)) = h;
     blue_channel(mutation_location(1),mutation_location(2)) = i;
 end
 
-%This establishes current generation array, which now contains dead cells, live cells, and mutated cells.
+%This establishes the current generation array, which now contains dead cells, live cells, and mutated cells.
 current_gen = cat(3,red_channel, green_channel, blue_channel);
 
-%This loop runs forever. The function "mutations_check_neighbors_colors" takes the current generation of cells and applies the rules to result in the new generation of cells.
-%Then, what was the new generation becomes the current generation for the next iteration, and the loop repeats again.
+%This loop runs forever. The function "mutations_check_neighbors_colors" takes the current generation of cells and applies a series of rules to result in the new generation of cells.
+%Then, this new generation becomes the current generation for the next iteration, and the loop repeats again.
 while true
     [new_gen] = mutations_check_neighbors_colors(current_gen);
     current_gen = new_gen;
 end
-
-end %end function 
- 
 
 end %end function
