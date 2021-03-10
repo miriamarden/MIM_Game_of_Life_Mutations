@@ -1,42 +1,17 @@
-
-
 %This code was written by Miriam Arden.
 
 %The function "mutation_check_neighbors_colors" takes the current generation of cells as input, applies a series of rules to determine which cells will live, die, and become mutated, and outputs the new generation of cells.
 function [new_gen] = mutations_check_neighbors_colors(current_gen)
 
-%The user is able to set the following things.
+global a b c d e f g h i dominant prevalence
 
-%The user can set the colors of the live cells, dead cells, and mutated cells. For example, setting a=1, b=, and c= makes the live cells yellow. The following color combinations can be used for reference:
-% Black: (0,0,0)      White: (1,1,1)      Red: (1,0,0)    Green: (0,1,0)      Blue: (0,0,1)
-% Yellow: (1,1,0)     Teal: (0,1,1)       Pink: (1,0,1)
-
-%Set the color for the live cells
-a=1;
-b=1;
-c=1;
-
-%Set the color for the dead cells 
-d=0;
-e=0;
-f=0;
-
-%Set the color for the mutated cells 
-g=1;
-h=0;
-i=0;
-
-%The user can also decide whether the mutation is dominant (dominant=1) or recessive (dominant=0)
-dominant = 1;
-
-%The user can set the prevalence of the mutation. This is the likelihood that a new cell that would otherwise be unmutated becomes mutated.
-%For example, a prevalence of .1 means approximately 10% of cells that do not meet the threshold for obtaining the mutation through its neighbors will still become mutated.
-prevalence = 0.1;
 
 %The new generation starts off with all dead cells
 initial = ones(100,100);
 new_gen = cat(3,d*initial, e*initial, f*initial);
 
+
+%These "for" loops goes through each cell of the matrix individually. Within the loop, we determine the status of the cell in the current generation as well as the status of the cell in the new generation based on the number of live normal and live mutated neighbors it has.
 for m = 2:99 %for the rows of the array
     for n = 2:99 %for the columns of the array
         mutations = 0; %initialize the "mutations" variable (for the "count mutations" section)
@@ -136,4 +111,4 @@ end %end for loop with m's
  
 mutations_show_stuff_colors(current_gen);
 axis off
-end %end function      
+end %end function        
