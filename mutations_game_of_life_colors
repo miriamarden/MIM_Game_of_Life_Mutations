@@ -2,6 +2,9 @@
 
 function [] = mutations_game_of_life_colors()
 
+%The user can set a specific number of normal live cells, or the number of live normal cells can be randomly generated.
+num_alive = randi(10000);
+
 %The user can set the number of mutations that the array starts out with.
 num_initial_mutations = 100;
 
@@ -33,10 +36,8 @@ red_channel = current_gen(:,:,1);
 green_channel = current_gen(:,:,2);
 blue_channel = current_gen(:,:,3);
 
-%The number of cells that are alive is a random number that is less than 10,000 (because the array has 10,000 total cells) 
-num_alive = randi(10000);
 
-%This section randomly determines the location of the live cells in the initial generation.
+%This section randomly determines the location of the live normal cells in the initial generation.
 for alive = 1:num_alive
     mutation_location = [randi(100),randi(100)];
     red_channel(mutation_location(1),mutation_location(2)) = a;
@@ -64,6 +65,7 @@ while true
     current_gen = new_gen;
 end
 
+end %end function
 
 
 end %end function
