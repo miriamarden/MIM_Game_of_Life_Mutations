@@ -3,6 +3,7 @@
 %The function "mutation_check_neighbors_colors" takes the current generation of cells as input, applies a series of rules to determine which cells will live, die, and become mutated, and outputs the new generation of cells.
 function [new_gen] = mutations_check_neighbors_colors(current_gen)
 
+%The following variables were set by the user in the "mutations_game_of_life_colors" function
 global a b c d e f g h i dominant prevalence
 
 
