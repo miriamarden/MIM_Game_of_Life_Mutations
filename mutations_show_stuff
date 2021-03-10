@@ -1,6 +1,0 @@
-function [] = mutations_show_stuff(current_gen)
-imagesc(current_gen);
-axis off
-drawnow
-end
-
