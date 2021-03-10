@@ -133,7 +133,7 @@ for m = 2:99 %for the rows of the array
         end
     end %end for loop with n's
 end %end for loop with m's
-
+ 
 mutations_show_stuff_colors(current_gen);
 axis off
 end %end function      
