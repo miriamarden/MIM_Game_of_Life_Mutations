@@ -65,7 +65,7 @@ while true
     current_gen = new_gen;
 end
 
-end %end function
-
+end %end function 
+ 
 
 end %end function
