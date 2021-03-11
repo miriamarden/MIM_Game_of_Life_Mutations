@@ -20,5 +20,5 @@ Rules:
   - Cells with at least 1 mutated neighbor (if the mutation is dominant) or at least 3 mutated neighbors (if the neighbor is recessive)       are mutated when they come alive
   - If x is the prevalence of the mutation, approximately x% of cells that are coming alive and do not meet the threshold for mutated         neighbors will still be mutated
 
-I go through the code in more detail in the video. I also show what the game looks like with a variety of the different files manipulated.
+I go through the code in more detail in the video (linked above). I also show what the game looks like with a variety of the different files manipulated.
 
