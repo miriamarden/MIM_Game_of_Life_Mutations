@@ -1,8 +1,6 @@
 #Game of Life: Mutations
 
-DEMO/INSTRUCTIONAL VIDEO --> https://drive.google.com/file/d/1N6DL0qB0flYHbpFygNJzvlxAQVfxN3cO/view?usp=sharing
-
-Group Members:
+DEMO/INSTRUCTIONAL VIDEO --> https://drive.google.com/file/d/1ZkOvhh_CE3PMfn_0S1EPfgQgRk9dCumX/view?usp=sharing
 1. Miriam Arden
 2. Isabel Riches
 3. Matthew Murphy
